@@ -1,0 +1,28 @@
+-- 2 to 1 multiplexer with 13 bit
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+
+entity mux2to1_voltmeter_distance is
+port( 		
+			in1 : in std_logic_vector(12 downto 0);
+			in2 : in std_logic_vector(12 downto 0);
+			S : in std_logic;
+			mux_out : out std_logic_vector(12 downto 0)
+			);
+end mux2to1_voltmeter_distance;
+
+architecture behavior of mux2to1_voltmeter_distance is
+			begin
+				process (S,in1,in2)
+					begin	
+						if			S ='0' then
+							mux_out <= in1;
+						elsif 	S ='1' then
+							mux_out <= in2;
+						end if;
+						
+				end process;
+				
+end behavior;

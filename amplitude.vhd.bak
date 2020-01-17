@@ -1,0 +1,54 @@
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+ENTITY amplitude IS
+   PORT(
+      clk            :  IN    STD_LOGIC;                                
+      reset          :  IN    STD_LOGIC;    
+		Switch			: 	in		std_logic;		
+      v_in      		:  IN    STD_LOGIC_VECTOR(3 DOWNTO 0);                           
+      distance       :  OUT   STD_LOGIC_VECTOR(3 DOWNTO 0)
+		);
+
+END amplitude;
+
+ARCHITECTURE behavior OF amplitude IS
+
+type sixteen_steps is array (0 to 15) of integer;
+constant j_cycle : sixteen_steps := (
+
+(	000000000	)	,
+(	000100000	)	,
+(	001000000	)	,
+(	001100000	)	,
+
+
+(	010000000	)	,
+
+(	010100000	)	,
+
+(	011000000	)	,
+
+(	011100000	)	,
+
+--(	100000000	)	,
+
+(	100100000	)	, --288
+
+(	101000000	)	, --320
+(	011111100	)	, --252
+(	110000000	)	, --384
+(	110100000	)	, --416
+(	111000000	)	, --448
+(	111100000	)	, --480
+(	111111111	)	, --512
+);
+
+begin
+	
+	j_cycle <= std_logic_vector(to_unsigned(v2d_far(to_integer(unsigned(v_in))),distance'length));
+	
+
+end behavior;
